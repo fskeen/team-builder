@@ -7,18 +7,13 @@ import TeamList from "./components/TeamList"
 
 function App() {
 
-  const teamArray = ["a", "b", "c"];
+  const [user, setUser] = useState({ name: "", email: "", role: "" });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("Submitted!")
-    console.log(event.target.value)
-    return teamArray.push(event.target.value)
-}
+  const [teamArray, setTeamArray] = useState([{name: "Bob", email: "blah@gmal.com", role: "Junior Web Dev"}]);
 
   return (
     <div className="App">
-      <Form submit={handleSubmit}/>
+      <Form user={user} setUser={setUser} team={teamArray} setTeam={setTeamArray}/>
       <TeamList team={teamArray}/>
     </div>
   );

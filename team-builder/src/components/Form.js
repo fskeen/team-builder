@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 
 function Form (props) {
-    const {submit} = props;
-
-  const [user, setUser] = useState({ name: "", email: "", role: "" });
+    const {user, setUser, team, setTeam} = props;
 
   const handleChange = (event) => {
     const updatedUser = { ...user, [event.target.name]: event.target.value };
@@ -13,12 +11,14 @@ function Form (props) {
   }
 
   const handleSubmit = (event) => {
-      event.preventDefault();
-      console.log(user)
-  }
+    event.preventDefault();
+    console.log("Submitted!")
+    console.log(user)
+    return setTeam([...team, user]);
+}
 
     return (
-        <form onSubmit={submit}>
+        <form onSubmit={handleSubmit}>
             <fieldset>
                 <legend>Add Team Member</legend>
                 <label for="name">
