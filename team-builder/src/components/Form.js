@@ -12,9 +12,13 @@ function Form (props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log("Submitted!")
-    // console.log(user)
-    return setTeam([...team, user]);
+    console.log("user???", user)
+    if (user.name && user.email && user.role) {
+        setTeam([...team, user]);
+        return setUser({ name: "", email: "", role: "" });
+    } else {
+     return alert("Please fill out all fields.")   
+    }
 }
 
     return (
@@ -34,7 +38,7 @@ function Form (props) {
                 <label for="email">
                 <p>Enter team member email</p>
                     <input
-                    type="text"
+                    type="email"
                     name="email"
                     placeholder=" example@example.com"
                     value={user.email}

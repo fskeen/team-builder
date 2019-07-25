@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 
 function TeamMember (props) {
-    let {name, email, role, memberToEdit, setMemberToEdit, team, setTeam} = props;
+    // props i am importing, destructured
+    let {name, email, role, memberToEdit, setMemberToEdit, team} = props;
 
+    // using state to toggle visibility on the edit menus
     const [hidden, setHidden] = useState(true)
 
+    // change handler for the edit form
     const handleChange = (event) => {
         const updatedUser = { ...memberToEdit, [event.target.name]: event.target.value };
         setMemberToEdit(updatedUser);
         console.log(memberToEdit)
-      }
+    }
 
+    // this function is what makes the edited values show up. if the edit menu is showing, add an edited flag to show that the info has been edited, then splice the edited info into the existing array and remove the old value. The edited flag is currently unused, but could be useful in future.
     const edit = () => {
         setHidden(!hidden);
 
@@ -18,7 +22,6 @@ function TeamMember (props) {
         console.log("testing name: ", name)
         if (hidden===false) {
             const editedUser = {...memberToEdit, edited: true}
-
             setMemberToEdit(editedUser);
             team.splice((team.findIndex(arr => arr.name===name)), 1, memberToEdit);
             console.log("post-splice", team)
@@ -27,6 +30,7 @@ function TeamMember (props) {
         return 
     }
     
+    // the actual JSX to return, wrapped in a fragment. Since it's possible to edit the values to be empty strings, I display a message about editing to add that value if that has happened.
     return (
         <>
         <div className="member-card">
@@ -40,6 +44,8 @@ function TeamMember (props) {
             
             <button className="edit-btn" onClick={() => edit()}>{hidden ? "Edit Details" : "Save Edits!"}</button>
         </div>
+
+        {/* Hiding and showing the edit form. If the user info is an empty string, there's a placeholder to display instead. */}
         {hidden ? null : 
             <form className="member-info">
             <h4>New info</h4>
@@ -50,7 +56,7 @@ function TeamMember (props) {
                 onChange={handleChange}>
             </input>
             <input
-                type="text"
+                type="email"
                 name="email"
                 placeholder={email.length > 0 ? email : "Type email here"}
                 onChange={handleChange}>

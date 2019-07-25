@@ -9,7 +9,7 @@ function TeamList (props) {
         <section className="team-list">
         <h2>Team Members</h2>
         {props.team.map( a => (
-            <TeamMember key={a.name} name={a.name} email={a.email} role={a.role} memberToEdit={memberToEdit} setMemberToEdit={setMemberToEdit} team={team} setTeam={setTeam}/>
+            <TeamMember key={a.name} name={a.name} email={a.email} role={a.role} memberToEdit={memberToEdit} setMemberToEdit={setMemberToEdit} team={team}/>
             )   
         )}
     </section>)
