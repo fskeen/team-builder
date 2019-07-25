@@ -7,20 +7,20 @@ function Form (props) {
   const handleChange = (event) => {
     const updatedUser = { ...user, [event.target.name]: event.target.value };
     setUser(updatedUser);
-      console.log("handling change!")
+    //   console.log("handling change!")
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Submitted!")
-    console.log(user)
+    // console.log("Submitted!")
+    // console.log(user)
     return setTeam([...team, user]);
 }
 
     return (
         <form onSubmit={handleSubmit}>
             <fieldset>
-                <legend>Add Team Member</legend>
+                <legend><h1>Add Team Member</h1></legend>
                 <label for="name">
                     <p>Enter team member name</p>
                     <input
