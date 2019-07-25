@@ -29,6 +29,11 @@ function TeamMember (props) {
         }
         return 
     }
+
+    const remove = () => {
+
+        return team.splice((team.findIndex(arr => arr.name===name)), 1);
+    }
     
     // the actual JSX to return, wrapped in a fragment. Since it's possible to edit the values to be empty strings, I display a message about editing to add that value if that has happened.
     return (
@@ -43,6 +48,7 @@ function TeamMember (props) {
             </div>
             
             <button className="edit-btn" onClick={() => edit()}>{hidden ? "Edit Details" : "Save Edits!"}</button>
+            <button className="remove-btn" onClick={() => remove()}>Remove team member</button>
         </div>
 
         {/* Hiding and showing the edit form. If the user info is an empty string, there's a placeholder to display instead. */}
